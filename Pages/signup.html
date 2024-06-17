@@ -14,18 +14,17 @@
     </header>
 
     <main>
-        <form>
-          <label for="">Email</label>
-          <input type="email" required>
+        <form id="signup-form">
+          <label for="email">Email</label>
+          <input type="email" id="email"  required>
 
-          <label for="">Password</label>
-          <input type="password" required>
+          <label for="password">Password</label>
+          <input type="password" id="password" minlength="8" required>
 
-          <label for="">Name</label>
-          <input type="text" required>
+          <label for="name">Name</label>
+          <input type="text" id="name" minlength="4" required>
 
-        
-          <button type="submit">Signup</button>
+          <button id="submit-button" type="submit">Signup</button>
         </form>
     </main>
 
@@ -33,6 +32,6 @@
         
     </footer>
     
-    <script src="logic.js"></script>
+    <script type="module" src="/Logic/signup.js"></script>
 </body>
 </html>
