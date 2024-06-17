@@ -24,7 +24,7 @@ header
 main
 {
    background-color: rgb(255, 217, 168);
-   height: 65%;
+   height: 70%;
    width: 100vw;
    display: flex;
    justify-content: center;
@@ -34,6 +34,61 @@ main
 footer
 {
    background-color: rgb(251, 207, 149);
-   height: 10%;
+   height: 5%;
    width: 100vw;
+}
+
+form
+{
+   background-color: rgb(255, 195, 116);
+   height: 90%;
+   width: 35%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding: 2%;
+   border-radius: 10px;
+   box-sizing: border-box;
+}
+
+input
+{
+   height: 15%;
+   width: 80%;
+   margin: 2%;
+   border-radius: 10px;
+   border: none;
+}
+
+label
+{
+   width: 80%;
+}
+
+button
+{
+   height: 15%;
+   width: 80%;
+   cursor: pointer;
+   margin-top: 2%;
+   border-radius: 10px;
+   border: none;
+}
+
+
+/* Media query for screens with a width between 500px and 1000px */
+@media (min-width: 500px) and (max-width: 1000px) {
+   form {
+      height: 90%;
+      width: 50%;
+   }
+}
+
+/* Media query for screens with a width of 500px or less */
+@media (max-width: 500px) {
+   form {
+      height: 90%;
+      width: 70%;
+   }
 }
