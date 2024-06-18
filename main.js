@@ -151,6 +151,7 @@ function login(){
     let users = JSON.parse(usersString);
     let userName;
 
+    if(users){
     users.forEach(user => {
         if(user.Email === emailLogIn.value && user.Password === passwordLogIn.value){
 
@@ -165,7 +166,15 @@ function login(){
             userName = user.Name;
             welcomeMessage.innerText = "Welcome " + userName;
         }
+        else{
+            alert("User Doesn't exist");
+        }
+        
     });
+
+}else{
+    alert("User Doesn't exist");
+}
     
 }
 
