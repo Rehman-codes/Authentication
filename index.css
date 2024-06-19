@@ -6,14 +6,14 @@
 
 html,body
 {
-   background-color: antiquewhite;
+   background-color: rgb(255, 255, 255);
    height: 100vh;
    width: 100vw;
 }
 
 header
 {
-   background-color: rgb(251, 207, 149);
+   background-color: rgb(247, 247, 247);
    height: 25%;
    width: 100vw;
    display: flex;
@@ -23,8 +23,8 @@ header
 
 main
 {
-   background-color: rgb(255, 217, 168);
-   height: 60%;
+   background-color: rgb(255, 255, 255);
+   height: 70%;
    width: 100vw;
    display: flex;
    justify-content: center;
@@ -33,14 +33,13 @@ main
 
 footer
 {
-   background-color: rgb(251, 207, 149);
-   height: 15%;
+   background-color: rgb(247, 247, 247);
+   height: 5%;
    width: 100vw;
 }
 
 form
 {
-   background-color: rgb(255, 195, 116);
    height: 90%;
    width: 35%;
    display: flex;
@@ -60,6 +59,7 @@ input
    border-radius: 10px;
    border: none;
    text-align: center;
+   border: 1px solid rgb(213, 213, 213);
 }
 
 label
@@ -75,6 +75,8 @@ button
    margin-top: 2%;
    border-radius: 10px;
    border: none;
+   background-color: rgb(66, 141, 255);
+   color: white;
 }
 
 
@@ -96,12 +98,14 @@ button
 /* ---------------------------------Section-2--------------------------------- */
 #signup-form{
    display: none;
+   background-color: rgb(247, 247, 247);
 }
 
 
 /* ---------------------------------Section-3--------------------------------- */
 #login-form{
    display: none;
+   background-color: rgb(247, 247, 247);
 }
 
 
@@ -111,7 +115,43 @@ button
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   height: 30%;
+   height: 20%;
    width: 25%;
    display: none;
+}
+
+
+/* ------------------------- Mobile Display --------------------------- */
+
+@media (max-width: 600px){
+
+   button{
+   height: 15%;
+   width: 80%;
+}
+
+#section-1{
+   width: 80%;
+}
+
+
+#signup-form,#login-form{
+   width: 90%;
+   background-color: rgb(247, 247, 247);
+}
+
+input{
+   border: 1px solid rgb(213, 213, 213);
+}
+
+}
+
+
+@media (max-width: 1000px){
+
+   #section-4{
+      width: 60%;
+      height: 23%;
+   }
+
 }

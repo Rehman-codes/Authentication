@@ -135,8 +135,15 @@ function validSignUp(){
 }
 
 setInterval(validSignUp, 1000);
+setInterval(checkDisability, 1000);
 
-
+function checkDisability(){
+    if(submitButton.disabled == false){
+        submitButton.style.backgroundColor = "rgb(66, 141, 255)";
+    }else{
+        submitButton.style.backgroundColor = "rgb(136, 183, 253)";
+    }
+}
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 loginForm.addEventListener("submit", function(event){
@@ -165,9 +172,7 @@ function login(){
             userView.style.display = "flex";
             userName = user.Name;
             welcomeMessage.innerText = "Welcome " + userName;
-        }
-        else{
-            alert("User Doesn't exist");
+
         }
         
     });
