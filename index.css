@@ -1,18 +1,18 @@
-*
-{
-    margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+/* General styles for all elements */
+* {
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-html,body
-{
+/* Base styles for the HTML and body elements */
+html, body {
+   margin: 0;
    background-color: rgb(255, 255, 255);
    height: 100vh;
    width: 100vw;
 }
 
-header
-{
+/* Header styling */
+header {
    background-color: rgb(247, 247, 247);
    height: 25%;
    width: 100vw;
@@ -21,8 +21,8 @@ header
    align-items: center;
 }
 
-main
-{
+/* Main content area styling */
+main {
    background-color: rgb(255, 255, 255);
    height: 70%;
    width: 100vw;
@@ -31,15 +31,15 @@ main
    align-items: center;
 }
 
-footer
-{
+/* Footer styling */
+footer {
    background-color: rgb(247, 247, 247);
    height: 5%;
    width: 100vw;
 }
 
-form
-{
+/* Form styling */
+form {
    height: 90%;
    width: 35%;
    display: flex;
@@ -51,24 +51,23 @@ form
    box-sizing: border-box;
 }
 
-input
-{
+/* Input field styling */
+input {
    height: 15%;
    width: 80%;
    margin: 2%;
    border-radius: 10px;
-   border: none;
-   text-align: center;
    border: 1px solid rgb(213, 213, 213);
+   text-align: center;
 }
 
-label
-{
+/* Label styling */
+label {
    width: 80%;
 }
 
-button
-{
+/* Button styling */
+button {
    height: 15%;
    width: 80%;
    cursor: pointer;
@@ -79,9 +78,8 @@ button
    color: white;
 }
 
-
-/* ---------------------------------Section-1--------------------------------- */
-#section-1{
+/* Section 1 styling (Signup and Login buttons section) */
+#section-1 {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -89,28 +87,27 @@ button
    width: 25%;
 }
 
-.non-form-buttons{
+/* Styling for buttons that are not part of forms */
+.non-form-buttons {
    height: 60%;
    width: 40%;
    margin: 3%;
 }
 
-/* ---------------------------------Section-2--------------------------------- */
-#signup-form{
+/* Section 2 styling (Signup form) */
+#signup-form {
    display: none;
    background-color: rgb(247, 247, 247);
 }
 
-
-/* ---------------------------------Section-3--------------------------------- */
-#login-form{
+/* Section 3 styling (Login form) */
+#login-form {
    display: none;
    background-color: rgb(247, 247, 247);
 }
 
-
-/* ---------------------------------Section-4--------------------------------- */
-#section-4{
+/* Section 4 styling (Welcome and Logout section) */
+#section-4 {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -120,38 +117,31 @@ button
    display: none;
 }
 
-
-/* ------------------------- Mobile Display --------------------------- */
-
-@media (max-width: 600px){
-
-   button{
-   height: 15%;
-   width: 80%;
-}
-
-#section-1{
-   width: 80%;
-}
-
-
-#signup-form,#login-form{
-   width: 90%;
-   background-color: rgb(247, 247, 247);
-}
-
-input{
-   border: 1px solid rgb(213, 213, 213);
-}
-
-}
-
-
-@media (max-width: 1000px){
-
-   #section-4{
-      width: 60%;
-      height: 23%;
+/* Media query for mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+   button {
+       height: 15%;
+       width: 80%;
    }
 
+   #section-1 {
+       width: 80%;
+   }
+
+   #signup-form, #login-form {
+       width: 90%;
+       background-color: rgb(247, 247, 247);
+   }
+
+   input {
+       border: 1px solid rgb(213, 213, 213);
+   }
+}
+
+/* Media query for medium devices (max-width: 1000px) */
+@media (max-width: 1000px) {
+   #section-4 {
+       width: 60%;
+       height: 23%;
+   }
 }
