@@ -1,35 +1,11 @@
-let storageAuthToken = localStorage.getItem("authToken");
+// ------------------------------- Global Data Members -------------------------------
+let validPassword = false;
+let validName = false;
 
-document.addEventListener("DOMContentLoaded", function(){
-    checkAuth();
-})
-
-
-function checkAuth(){
-    if (storageAuthToken) {
-        let userName = localStorage.getItem("userName"); 
-        if (userName) {
-            welcomeMessage.innerText = "Welcome " + userName;
-            showUserView();
-        } else {
-            localStorage.setItem("authToken", "");
-        }
-    } else {
-        localStorage.setItem("authToken", "")
-    }
-}
-
-
-function showUserView(){
-    signupForm.style.display = "none";
-    loginForm.style.display = "none";
-    home.style.display = "none";
-    userView.style.display = "flex";
-}
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ELEMENTS
+// ------------------------------- HTML Elements -------------------------------
 let home = document.getElementById("section-1");
 let userView = document.getElementById("section-4");
+let welcomeMessage = document.getElementById("welcome-message");
 
 let signupButton = document.getElementById("signup-button");
 let loginButton = document.getElementById("login-button");
@@ -46,26 +22,38 @@ let loginForm = document.getElementById("login-form");
 let emailLogIn = document.getElementById("login-email");
 let passwordLogIn = document.getElementById("login-password");
 
-let welcomeMessage = document.getElementById("welcome-message");
 
-let users = [];
+// ------------------------------- Check Auth -------------------------------
+document.addEventListener("DOMContentLoaded", function(){
+    let = storageAuthToken = localStorage.getItem("authToken");
+    checkAuth(storageAuthToken);
+})
 
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< SIGNUP
-let validatePassword = false;
-let validateName = false;
+function checkAuth(storageAuthToken){
 
+    if (storageAuthToken) {
+        let userName = localStorage.getItem("userName"); 
+        if (userName) {
+            showUserView();
+            welcomeMessage.innerText = "Welcome " + userName;
+        }
+    }
+}
+
+
+// ------------------------------- Signup -------------------------------
 signupForm.addEventListener("submit", function(event){
     signup();
-    validatePassword = false;
-    validateName = false;
+    showLogIn();
     event.preventDefault();
 })
 
 function signup() {
 
-    let usersString = localStorage.getItem("users");
     let User = createUser();
+    let users;
+    let usersString = localStorage.getItem("users");
 
     if(!usersString){
         users = [User];
@@ -78,15 +66,13 @@ function signup() {
     usersString = JSON.stringify(users);
     localStorage.setItem("users",usersString);
     alert("Account created successfully ✅");
-    signupForm.style.display = "none";
-    loginForm.style.display = "flex";
-    home.style.display = "none";
-    userView.style.display = "none";
+
+    validPassword = false;
+    validName = false;
 }
 
 
 function createUser(){
-
     return {
         Email: emailSignUp.value,
         Password: passwordSignUp.value,
@@ -94,24 +80,17 @@ function createUser(){
     }
 }
 
-function emptyInputs(){
-    emailSignUp.value = "";
-    passwordSignUp.value = "";
-    nameSignUp.value = "";
-}
-
-
 passwordSignUp.addEventListener('input', function() {
 
     passwordSignUp.value = passwordSignUp.value.trim();
 
     if(passwordSignUp.value.length < 8){
         submitButton.disabled = true;
+        validPassword = false;
     }
     else{
-        validatePassword = true;
+        validPassword = true;
     }
-    
 
 });
 
@@ -122,20 +101,20 @@ nameSignUp.addEventListener('input', function() {
 
     if(nameSignUp.value.length < 4){
         submitButton.disabled = true;
+        validName = false;
     }else{
-        validateName = true;
+        validName = true;
     }
     
 });
 
 function validSignUp(){
-    if(validatePassword && validateName){
+    if(validPassword && validName){
         submitButton.disabled = false;
     }
 }
+setInterval(validSignUp, 100);
 
-setInterval(validSignUp, 1000);
-setInterval(checkDisability, 1000);
 
 function checkDisability(){
     if(submitButton.disabled == false){
@@ -144,21 +123,23 @@ function checkDisability(){
         submitButton.style.backgroundColor = "rgb(136, 183, 253)";
     }
 }
+setInterval(checkDisability, 100);
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+// ------------------------------- Login -------------------------------
 loginForm.addEventListener("submit", function(event){
-    login();
     event.preventDefault();
+    login();
 })
 
 
 function login(){
 
     let usersString = localStorage.getItem("users");
-    let users = JSON.parse(usersString);
-    let userName;
 
-    if(users){
+    if(usersString){
+
+    let users = JSON.parse(usersString);
+
     users.forEach(user => {
         if(user.Email === emailLogIn.value && user.Password === passwordLogIn.value){
 
@@ -166,57 +147,68 @@ function login(){
             localStorage.setItem("authToken", authToken);
             localStorage.setItem("userName", user.Name);
 
-            signupForm.style.display = "none";
-            loginForm.style.display = "none";
-            home.style.display = "none";
-            userView.style.display = "flex";
-            userName = user.Name;
-            welcomeMessage.innerText = "Welcome " + userName;
-
+            showUserView();
+            welcomeMessage.innerText = "Welcome " + user.Name;
         }
         
     });
 
-}else{
-    alert("User Doesn't exist");
-}
+    }else{
+        alert("User Doesn't exist");
+    } 
     
 }
 
 function generateAuthToken(){
-
     let authToken = "";
-
     for(let i=0; i<10;i++){
         authToken += Math.floor(Math.random() *10);
     }
-
     return authToken;
 }
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
-logoutButton.addEventListener("click",function(){
-    localStorage.setItem("authToken", "")
-    localStorage.setItem("userName", "");
+// ------------------------------- Views -------------------------------
+function showUserView(){
+    signupForm.style.display = "none";
+    loginForm.style.display = "none";
+    home.style.display = "none";
+    userView.style.display = "flex";
+}
+
+function showHome(){
     signupForm.style.display = "none";
     loginForm.style.display = "none";
     home.style.display = "flex";
     userView.style.display = "none";
-})
+}
 
 
-signupButton.addEventListener("click", function(){
-    signupForm.style.display = "flex";
-    loginForm.style.display = "none";
-    home.style.display = "none";
-    userView.style.display = "none";
-})
-
-
-loginButton.addEventListener("click", function(){
+function showLogIn(){
     signupForm.style.display = "none";
     loginForm.style.display = "flex";
     home.style.display = "none";
     userView.style.display = "none";
+}
+
+function showSignUp(){
+    signupForm.style.display = "flex";
+    loginForm.style.display = "none";
+    home.style.display = "none";
+    userView.style.display = "none";
+}
+
+logoutButton.addEventListener("click",function(){
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userName");
+    showHome();
 })
 
+
+signupButton.addEventListener("click", function(){
+   showSignUp();
+})
+
+
+loginButton.addEventListener("click", function(){
+    showLogIn();
+})

@@ -67,7 +67,7 @@ label {
 }
 
 /* Button styling */
-button {
+.form-buttons {
    height: 15%;
    width: 80%;
    cursor: pointer;
@@ -91,7 +91,12 @@ button {
 .non-form-buttons {
    height: 60%;
    width: 40%;
+   cursor: pointer;
    margin: 3%;
+   border-radius: 10px;
+   border: none;
+   background-color: rgb(66, 141, 255);
+   color: white;
 }
 
 /* Section 2 styling (Signup form) */
@@ -112,14 +117,14 @@ button {
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   height: 20%;
+   height: 30%;
    width: 25%;
    display: none;
 }
 
 /* Media query for mobile devices (max-width: 600px) */
 @media (max-width: 600px) {
-   button {
+   .form-buttons{
        height: 15%;
        width: 80%;
    }
@@ -138,10 +143,14 @@ button {
    }
 }
 
-/* Media query for medium devices (max-width: 1000px) */
-@media (max-width: 1000px) {
-   #section-4 {
-       width: 60%;
-       height: 23%;
+@media (max-width: 950px) {
+   #logout-button{
+      height: 20%;
+      width: 40%;
    }
+
+   #section-4{
+      width: 70%;
+      height: 50%;
+  }
 }
